@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,10 +22,12 @@ public class GetRandomStory extends HttpServlet {
     private static String QUESTION = "Question";
     private static String ANSWER = "Answer";
     private static String FACT = "Fact";
+    private static String ENTITY = "Entity";
+    private static String BEATEN = "Beaten";
 
     private static List<Entity> allResults = new ArrayList<>();
     private static Random random;
-    private static Datastore datastore;
+    public static Datastore datastore;
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,10 +38,18 @@ public class GetRandomStory extends HttpServlet {
             session.setAttribute(QUESTION, story.getString(QUESTION));
             session.setAttribute(ANSWER, story.getString(ANSWER));
             session.setAttribute(FACT, story.getBoolean(FACT));
+            session.setAttribute(ENTITY, story);
+            DecimalFormat decimalFormat=new DecimalFormat(".00");
+            session.setAttribute(BEATEN, story.getLong("AnswersCount") == 0 ?
+                    "N/A" : decimalFormat.format(100.0-100.0*story.getLong("CorrectAnswersCount")/story.getLong("AnswersCount")));
 
             req.getRequestDispatcher("getRandomStory.jsp").forward(req, resp);
         } else {
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            PrintWriter out = resp.getWriter();
+            resp.setContentType("text/html");
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('No more stories in this session.');");
+            out.println("</script>");
         }
     }
 

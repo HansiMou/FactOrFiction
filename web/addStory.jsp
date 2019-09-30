@@ -28,19 +28,27 @@
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="pricing-table">
                         <div class="pricing-header">
-                            <p class="pricing-title">Fact?</p>
-                            <a href="showAnswer?fact=true" class="btn btn-custom">Fact</a>
-                            <a href="showAnswer?fact=false" class="btn btn-custom">Fiction</a>
+                            <p class="pricing-title">Add</p>
                         </div>
 
                         <div class="pricing-list">
-                            <ul>
-                                <li><i class="fa fa-smile-o"></i>
-                                    <%
-                                        out.print(session.getAttribute("Question"));
-                                    %>
-                                </li>
-                            </ul>
+                            <form action="addToDatabase">
+                                Question:
+                                <input type="text" name="question" required>
+                                <br>
+                                <select name="fact" required>
+                                    <option value="fact">fact</option>
+                                    <option value="fiction">fiction</option>
+                                </select>
+                                <br>
+                                Explanation:
+                                <input type="text" name="answer">
+                                <br>
+                                Creator(ldap such as hansmou):
+                                <input type="text" name="creator">
+                                <br><br>
+                                <input type="submit" value="Submit">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -49,6 +57,5 @@
         </div>
     </div>
 </section>
-<!-- Pricing Table Section End -->
 </body>
 </html>

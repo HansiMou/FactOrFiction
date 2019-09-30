@@ -28,7 +28,18 @@
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="pricing-table">
                         <div class="pricing-header">
-                            <p class="pricing-title">Fact?</p>
+                            <p class="pricing-title">
+                                <%
+                                    boolean guess = Boolean.parseBoolean((String) request.getAttribute("fact"));
+                                    boolean fact = (boolean) session.getAttribute("Fact");
+
+                                    if (guess == fact) {
+                                        out.print("Right");
+                                    } else {
+                                        out.print("Wrong");
+                                    }
+                                %>
+                            </p>
                         </div>
 
                         <div class="pricing-list">
@@ -36,6 +47,24 @@
                                 <li><i class="fa fa-smile-o"></i>
                                     <%
                                         out.print(session.getAttribute("Question"));
+                                    %>
+                                </li>
+                                <li><i class="fa fa-smile-o"></i>
+                                    <%
+                                        String rate = (String) session.getAttribute("Beaten");
+                                        if (guess == fact) {
+                                            if (rate.equals("N/A")) {
+                                                out.print("Congrats! You provided the first data point which is right!");
+                                            } else {
+                                                out.print("Congrats! You have beaten " + rate + "%!");
+                                            }
+                                        } else {
+                                            if (rate.equals("N/A")) {
+                                                out.print(":( You provided the first data point which is wrong.");
+                                            } else {
+                                                out.print("You are not alone. You are among " + rate + "%.");
+                                            }
+                                        }
                                     %>
                                 </li>
                             </ul>

@@ -29,7 +29,7 @@
                     <div class="pricing-table">
                         <div class="pricing-header">
                             <p class="pricing-title">Play</p>
-                            <a href="/getRandomStory" class="btn btn-custom">Click me to start</a>
+                            <a href="getRandomStory" class="btn btn-custom">Click me to start</a>
                         </div>
 
                         <div class="pricing-list">
@@ -44,7 +44,7 @@
                     <div class="pricing-table">
                         <div class="pricing-header">
                             <p class="pricing-title">Add</p>
-                            <a href="/addStory" class="btn btn-custom">Click me to start</a>
+                            <a href="addStory" class="btn btn-custom">Click me to start</a>
                         </div>
 
                         <div class="pricing-list">

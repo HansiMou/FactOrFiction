@@ -36,4 +36,12 @@
         <servlet-name>AddStory</servlet-name>
         <url-pattern>/addStory</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AddToDatabase</servlet-name>
+        <servlet-class>com.AddToDatabase</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddToDatabase</servlet-name>
+        <url-pattern>/addToDatabase</url-pattern>
+    </servlet-mapping>
 </web-app>
